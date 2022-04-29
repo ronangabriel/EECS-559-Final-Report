@@ -12,8 +12,6 @@ def main():
     with open("time_series_data_6h_4-8-22.txt", 'r') as j:
         data = json.loads(j.read())
 
-    #original = copy.deepcopy(data)
-
     print("Preprocessing data...")
     data = pp.deleteInvalid(data, trueLen)
     data = pp.clipFrontData(data, trueLen)
@@ -22,9 +20,6 @@ def main():
     dataVec = pp.vectorize(data)
     dataVec = pp.deleteErrors(dataVec)
     dataVec = pp.normalize(dataVec)
-
-    M = np.shape(dataVec)[0]
-    N = np.shape(dataVec)[1]
 
     kc.singleFeature(dataVec)
 
